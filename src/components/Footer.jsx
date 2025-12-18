@@ -1,0 +1,120 @@
+// Footer Component
+import React from 'react';
+import { Mail, Linkedin, Github, MapPin, Phone } from 'lucide-react';
+import { personalInfo, menuItems } from '../data/portfolioData';
+
+const Footer = ({ scrollToSection, darkMode }) => {
+  return (
+    <footer className={`py-12 px-6 border-t transition-colors duration-300 ${
+      darkMode ? 'border-gray-800' : 'border-gray-200'
+    }`}>
+      <div className="max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
+          {/* Brand */}
+          <div>
+            <h3 className={`text-xl font-bold mb-3 ${darkMode ? 'text-cyan-400' : 'text-cyan-600'}`}>
+              apdev
+            </h3>
+            <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-500' : 'text-gray-600'}`}>
+              Desarrollador Backend especializado en .NET Core, creando soluciones escalables y mantenibles.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className={`font-semibold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Navegación
+            </h4>
+            <div className="space-y-2">
+              {menuItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`block text-sm transition-colors ${
+                    darkMode 
+                      ? 'text-gray-500 hover:text-cyan-400' 
+                      : 'text-gray-600 hover:text-cyan-600'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className={`font-semibold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Contacto
+            </h4>
+            <div className="space-y-3">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className={`flex items-center gap-2 text-sm transition-colors ${
+                  darkMode 
+                    ? 'text-gray-500 hover:text-cyan-400' 
+                    : 'text-gray-600 hover:text-cyan-600'
+                }`}
+              >
+                <Mail size={14} />
+                {personalInfo.email}
+              </a>
+              <a
+                href={`tel:${personalInfo.phone.replace(/-/g, '')}`}
+                className={`flex items-center gap-2 text-sm transition-colors ${
+                  darkMode 
+                    ? 'text-gray-500 hover:text-cyan-400' 
+                    : 'text-gray-600 hover:text-cyan-600'
+                }`}
+              >
+                <Phone size={14} />
+                {personalInfo.phone}
+              </a>
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2 text-sm transition-colors ${
+                  darkMode 
+                    ? 'text-gray-500 hover:text-cyan-400' 
+                    : 'text-gray-600 hover:text-cyan-600'
+                }`}
+              >
+                <Linkedin size={14} />
+                LinkedIn
+              </a>
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2 text-sm transition-colors ${
+                  darkMode 
+                    ? 'text-gray-500 hover:text-cyan-400' 
+                    : 'text-gray-600 hover:text-cyan-600'
+                }`}
+              >
+                <Github size={14} />
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className={`border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4 ${
+          darkMode ? 'border-gray-800' : 'border-gray-200'
+        }`}>
+          <p className={`text-sm ${darkMode ? 'text-gray-600' : 'text-gray-500'}`}>
+            © {new Date().getFullYear()} {personalInfo.fullName}. Todos los derechos reservados.
+          </p>
+          <div className={`flex items-center gap-2 text-sm ${darkMode ? 'text-gray-600' : 'text-gray-500'}`}>
+            <MapPin size={14} />
+            {personalInfo.location}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

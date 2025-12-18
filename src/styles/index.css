@@ -1,0 +1,140 @@
+/* Main Styles - Portfolio Agustín Pagliuca v2 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode scrollbar */
+html.dark ::-webkit-scrollbar {
+  width: 8px;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #22d3ee;
+  border-radius: 4px;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4;
+}
+
+/* Light mode scrollbar */
+html.light ::-webkit-scrollbar {
+  width: 8px;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #e5e7eb;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #0891b2;
+  border-radius: 4px;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #0e7490;
+}
+
+/* Selection - Dark mode */
+html.dark ::selection {
+  background: rgba(34, 211, 238, 0.3);
+  color: white;
+}
+
+/* Selection - Light mode */
+html.light ::selection {
+  background: rgba(8, 145, 178, 0.3);
+  color: #111827;
+}
+
+/* Focus Styles */
+*:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-cyan-500 text-gray-900 rounded-full font-semibold transition-all hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/25;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-gray-800 border border-gray-700 rounded-full text-gray-300 transition-all hover:bg-gray-700 hover:border-gray-600;
+  }
+
+  .card {
+    @apply bg-gray-800/50 rounded-2xl border border-gray-700/50 transition-all hover:border-cyan-500/50;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-white mb-4;
+  }
+}
