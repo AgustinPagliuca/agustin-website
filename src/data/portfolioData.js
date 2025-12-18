@@ -11,8 +11,8 @@ export const personalInfo = {
   email: 'agustinpagliuca1@gmail.com',
   phone: '+54-11-23448499',
   location: 'Buenos Aires, Argentina',
-  linkedin: 'https://linkedin.com/in/agustin-pagliuca',
-  github: 'https://github.com/agustinpagliuca',
+  linkedin: 'https://www.linkedin.com/in/agustin-pagliuca-6836b7237/',
+  github: 'https://github.com/AgustinPagliuca',
   profileImage: './foto-perfil.jpeg',
   cvUrl: './cv-agustin-pagliuca.pdf',
   available: true
