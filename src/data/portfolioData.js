@@ -91,13 +91,13 @@ export const projects = [
   },
   {
     id: 2,
-    title: 'Gestor de Tareas',
-    description: 'Aplicación web fullstack con autenticación JWT, CRUD completo, gestión de estado con Redux y diseño responsive.',
-    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop',
-    category: 'Fullstack',
-    tech: ['Node.js', 'Express', 'MongoDB', 'React', 'Redux'],
-    link: '#', // TODO: Agregar link al proyecto deployado
-    github: '#' // TODO: Agregar link al repositorio de GitHub
+    title: 'Espacio Dérmico',
+    description: 'Landing page para centro de estética y bienestar. Sitio web moderno con diseño responsive, optimizado para presentar servicios dermatológicos y estéticos.',
+    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=400&fit=crop',
+    category: 'Frontend',
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design'],
+    link: 'https://agustinpagliuca.github.io/EspacioDermico/',
+    github: 'https://github.com/AgustinPagliuca/EspacioDermico'
   }
 ];
 
