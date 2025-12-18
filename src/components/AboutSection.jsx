@@ -4,6 +4,26 @@ import { Download } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
 const AboutSection = ({ darkMode }) => {
+  const downloadCv = async (e) => {
+    e.preventDefault();
+    try {
+      const url = personalInfo.cvUrl;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Network response was not ok');
+      const blob = await res.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = 'cv-agustin-pagliuca.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      // Fallback: open the file (browser may handle download)
+      window.location.href = personalInfo.cvUrl;
+    }
+  };
   return (
     <section id="sobre-mi" className={`py-20 px-6 ${darkMode ? 'bg-gray-900/50' : 'bg-gray-50'}`}>
       <div className="max-w-4xl mx-auto">
@@ -61,9 +81,9 @@ const AboutSection = ({ darkMode }) => {
             </p>
 
             <div className="pt-4">
-              <a
-                href={personalInfo.cvUrl}
-                download
+              <button
+                type="button"
+                onClick={downloadCv}
                 className={`inline-flex items-center gap-2 px-6 py-3 border rounded-full text-sm transition-all ${
                   darkMode 
                     ? 'bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:border-gray-600' 
@@ -72,7 +92,7 @@ const AboutSection = ({ darkMode }) => {
               >
                 Currículum
                 <Download size={16} />
-              </a>
+              </button>
             </div>
           </div>
         </div>

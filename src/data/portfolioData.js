@@ -14,7 +14,7 @@ export const personalInfo = {
   linkedin: 'https://linkedin.com/in/agustin-pagliuca',
   github: 'https://github.com/agustinpagliuca',
   profileImage: './foto-perfil.jpeg',
-  cvUrl: './AGUSTIN PAGLIUCA - CV IT ESPAÑOL CF2.pdf',
+  cvUrl: './cv-agustin-pagliuca.pdf',
   available: true
 };
 
