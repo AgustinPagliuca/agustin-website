@@ -8,6 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://agustinpagliuca.github.io',
   base: '/agustin-website',
+  outDir: './docs',
   integrations: [react()],
 
   vite: {
