@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  transition: color 300ms, background-color 300ms;
+}

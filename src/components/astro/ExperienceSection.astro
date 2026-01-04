@@ -1,0 +1,50 @@
+---
+import { Briefcase } from 'lucide-react';
+import { experience } from '../../data/portfolioData';
+
+const { darkMode } = Astro.props;
+---
+
+<section id="experiencia" class="py-20 px-6">
+  <div class="max-w-4xl mx-auto">
+    <h2 class={`text-3xl md:text-4xl font-bold mb-12 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+      Experiencia
+    </h2>
+
+    <div class="space-y-0">
+      {experience.map((exp, index) => (
+        <div class="flex gap-4 group">
+          {/* Timeline Icon */}
+          <div class="flex flex-col items-center">
+            <div class={`w-10 h-10 border rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${
+              darkMode
+                ? 'bg-gray-800 border-gray-700 group-hover:border-cyan-500/50'
+                : 'bg-white border-gray-300 group-hover:border-cyan-500'
+            }`}>
+              <Briefcase size={18} className={darkMode ? 'text-cyan-400' : 'text-cyan-600'} />
+            </div>
+            {/* Vertical Line */}
+            {index < experience.length - 1 && (
+              <div class={`w-0.5 flex-1 my-2 ${darkMode ? 'bg-gray-800' : 'bg-gray-300'}`} />
+            )}
+          </div>
+
+          {/* Content */}
+          <div class="flex-1 pb-10">
+            <div class="flex flex-wrap items-baseline gap-2 mb-1">
+              <h3 class={`text-xl font-semibold transition-colors ${
+                darkMode ? 'text-cyan-400 group-hover:text-cyan-300' : 'text-cyan-600 group-hover:text-cyan-500'
+              }`}>
+                {exp.title}
+              </h3>
+              <span class={darkMode ? 'text-gray-600' : 'text-gray-400'}>-</span>
+              <span class={darkMode ? 'text-orange-400' : 'text-orange-600'}>{exp.company}</span>
+            </div>
+            <p class={`text-sm mb-3 ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>{exp.period}</p>
+            <p class={`leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{exp.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

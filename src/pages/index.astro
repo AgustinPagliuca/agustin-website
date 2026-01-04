@@ -1,16 +1,92 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/react/Navigation';
+import AboutSection from '../components/react/AboutSection';
+import HeroSection from '../components/astro/HeroSection.astro';
+import ExperienceSection from '../components/astro/ExperienceSection.astro';
+import ProjectsSection from '../components/astro/ProjectsSection.astro';
+import TechnologiesSection from '../components/astro/TechnologiesSection.astro';
+import Footer from '../components/astro/Footer.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Agustín Pagliuca - Desarrollador Backend .NET">
+  {/* Client-side wrapper for dark mode state */}
+  <div id="app-root">
+    <script>
+      // Initialize dark mode from localStorage or default to true
+      const darkMode = localStorage.getItem('darkMode') !== 'false';
+      if (darkMode) {
+        document.documentElement.classList.add('dark');
+        document.body.classList.add('bg-gray-950', 'text-white');
+      } else {
+        document.documentElement.classList.add('light');
+        document.body.classList.add('bg-gray-100', 'text-gray-900');
+      }
+    </script>
+
+    {/* Background Effects */}
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl transition-colors duration-300 bg-cyan-500/5 dark:bg-cyan-500/5 light:bg-cyan-500/10" />
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl transition-colors duration-300 bg-purple-500/5 dark:bg-purple-500/5 light:bg-purple-500/10" />
+      <div class="absolute top-1/2 right-0 w-64 h-64 rounded-full blur-3xl transition-colors duration-300 bg-orange-500/5 dark:bg-orange-500/5 light:bg-orange-500/10" />
+    </div>
+
+    {/* Navigation - React component for interactivity */}
+    <Navigation client:load />
+
+    {/* Main Content */}
+    <main class="relative">
+      <HeroSection darkMode={true} />
+      <ExperienceSection darkMode={true} />
+      <ProjectsSection darkMode={true} />
+      <TechnologiesSection darkMode={true} />
+      <AboutSection client:load darkMode={true} />
+    </main>
+
+    {/* Footer */}
+    <Footer darkMode={true} />
+  </div>
+
+  {/* Client-side script for dark mode synchronization */}
+  <script>
+    function setupDarkMode() {
+      let darkMode = localStorage.getItem('darkMode') !== 'false';
+
+      // Function to update all components
+      function updateDarkMode(isDark) {
+        darkMode = isDark;
+        localStorage.setItem('darkMode', isDark);
+
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+          document.body.classList.add('bg-gray-950', 'text-white');
+          document.body.classList.remove('bg-gray-100', 'text-gray-900');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          document.body.classList.remove('bg-gray-950', 'text-white');
+          document.body.classList.add('bg-gray-100', 'text-gray-900');
+        }
+
+        // Dispatch custom event for React components
+        window.dispatchEvent(new CustomEvent('darkModeChange', { detail: { darkMode: isDark } }));
+      }
+
+      // Listen for dark mode changes from React Navigation
+      window.addEventListener('setDarkMode', ((e) => {
+        updateDarkMode(e.detail.darkMode);
+      }));
+
+      // Initialize
+      updateDarkMode(darkMode);
+    }
+
+    // Run on load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupDarkMode);
+    } else {
+      setupDarkMode();
+    }
+  </script>
+</Layout>
